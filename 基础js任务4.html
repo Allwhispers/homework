@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟队列</title>
+</head>
+<style>
+    button {
+
+        list-style-type: none;
+        outline: none;
+    }
+
+    input[type=text] {
+        height: 18px;
+
+    }
+
+    /*.box {*/
+        /*display: inline-block;*/
+        /*margin-right: 10px;*/
+        /*text-align: center;*/
+        /*list-style-type: none;*/
+        /*padding: 10px 10px;*/
+        /*background-color: red;*/
+    /*}*/
+</style>
+<body>
+<div>
+    <input type="text" placeholder="" id="value">
+    <button id="left-in">左侧入</button>
+    <button id="right-in">右侧入</button>
+    <button id="left-out">左侧出</button>
+    <button id="right-out">右侧出</button>
+</div>
+<ul id="box">
+
+</ul>
+<script>
+    window.onload = function () {
+
+        var liBtn = document.getElementById("left-in"),
+            riBtn = document.getElementById("right-in"),
+            loBtn = document.getElementById("left-out"),
+            roBtn = document.getElementById("right-out"),
+            arrBox = document.getElementById("value"),
+            arr = [23, 34, 45],
+            box = document.getElementById("box");
+
+        var removeAllChild = function () {
+            while (box.hasChildNodes()) {
+                box.removeChild(box.firstChild);
+            }
+        };
+        var createBox = function (array) {
+            removeAllChild();
+            array.map(function (value) {
+                var li = document.createElement('li');
+                li.setAttribute("class", "box");
+                var val = document.createTextNode(value);
+                li.appendChild(val);
+                document.getElementById("box").appendChild(li);
+            })
+        };
+        var judgeValue = function (value) {
+            return value > 0 && value <= 100 ? true : false;
+        }
+        createBox(arr);
+        liBtn.addEventListener('click', function () {
+            var value = arrBox.value;
+            if (judgeValue(value)) {
+                arr.unshift(value);
+                createBox(arr);
+                alert(arr);
+            } else {
+                alert("请输入0-100的数字")
+            }
+        });
+        riBtn.addEventListener('click', function () {
+
+            var value = arrBox.value;
+            if (judgeValue(value)) {
+                arr.push(value);
+                createBox(arr);
+                alert(arr);
+            } else {
+                alert("请输入0-100的数字")
+            }
+        });
+        loBtn.addEventListener('click', function () {
+            alert("删除的是：" + arr.shift());
+            createBox(arr);
+        });
+        roBtn.addEventListener('click', function () {
+            alert("删除的是：" + arr.pop());
+            createBox(arr);
+        })
+
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    button {
+
+        list-style-type: none;
+        outline: none;
+    }
+
+    input[type=text] {
+        height: 18px;
+
+    }
+
+    li {
+        display: inline-block;
+        display: inline-block;
+        margin-right: 10px;
+        width: 50px;
+        list-style-type: none;
+        background-color: red;
+    }
+
+</style>
+
+<body>
+<div>
+    <input type="text" placeholder="" id="value">
+    <button id="left-in">左侧入</button>
+    <button id="right-in">右侧入</button>
+    <button id="left-out">左侧出</button>
+    <button id="right-out">右侧出</button>
+</div>
+<ul id="box">
+
+</ul>
+<script>
+    window.onload = function () {
+        var liBtn = document.getElementById("left-in"),
+            riBtn = document.getElementById("right-in"),
+            loBtn = document.getElementById("left-out"),
+            roBtn = document.getElementById("right-out"),
+            arrBox = document.getElementById("value"),
+            arr = [23, 34, 45],
+            box = document.getElementById("box");
+        var createColumn = function (array) {
+            while (box.hasChildNodes()) {
+                box.removeChild(box.firstChild);
+            }
+            if (!!arr) {
+                array.map(function (value) {
+                    var li = document.createElement("li");
+                    li.innerHTML = "<div class='column' style='height:" + value + "px'>";
+                    box.appendChild(li);
+                })
+            }
+        };
+        createColumn(arr);
+        liBtn.addEventListener('click', function () {
+            arr.unshift(Number(arrBox.value));
+            console.log(arr, arrBox.value)
+            createColumn(arr);
+        });
+        riBtn.addEventListener("click", function () {
+            arr.push(Number(arrBox.value));
+            createColumn(arr);
+        })
+        loBtn.addEventListener('click', function () {
+            arr.shift();
+            createColumn(arr);
+        })
+        roBtn.addEventListener('click', function () {
+            arr.pop();
+            createColumn(arr);
+        })
+    }
+</script>
+</body>
+</html>
