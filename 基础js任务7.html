@@ -39,7 +39,8 @@
             flex-basis: 100%;
             border: 1px solid #cccccc;
         }
-        button{
+
+        button {
             border-style: none;
             list-style-type: none;
             background-color: #ffff00;
@@ -94,21 +95,24 @@
             preOrder(node.lastElementChild);
         }
     }
+
     function inOrder(node) {
-        if(!!node.firstElementChild){
+        if (!!node.firstElementChild) {
             inOrder(node.firstElementChild);
-        };
+        }
+        ;
         treeQueen.push(node);
-        if(!!node.lastElementChild){
+        if (!!node.lastElementChild) {
             inOrder(node.lastElementChild);
         }
     }
 
     function postOrder(node) {
-        if(!!node.firstElementChild){
+        if (!!node.firstElementChild) {
             inOrder(node.firstElementChild);
-        };
-        if(!!node.lastElementChild){
+        }
+        ;
+        if (!!node.lastElementChild) {
             inOrder(node.lastElementChild);
         }
         treeQueen.push(node);
@@ -144,7 +148,7 @@
 
     window.onload = function () {
 
-        document.getElementById('preorder').addEventListener('click',function () {
+        document.getElementById('preorder').addEventListener('click', function () {
             if (inShow) {
                 alert("正在执行中");
                 return;
@@ -152,7 +156,7 @@
             preOrder(document.getElementById('root'));
             show();
         });
-        document.getElementById('inorder').addEventListener('click',function () {
+        document.getElementById('inorder').addEventListener('click', function () {
             if (inShow) {
                 alert("正在执行中");
                 return;
@@ -160,7 +164,7 @@
             inOrder(document.getElementById('root'));
             show();
         });
-        document.getElementById('postorder').addEventListener('click',function () {
+        document.getElementById('postorder').addEventListener('click', function () {
             if (inShow) {
                 alert("正在执行中");
                 return;
